@@ -3,63 +3,100 @@
 <head>
     <title>Para Astraeness 💚</title>
     <meta charset="UTF-8">
+
+    <!-- Fuente elegante -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
     <style>
         body {
             background: linear-gradient(-45deg, #18b867, #22E07F, #5ef5a5);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
             text-align: center;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Poppins', sans-serif;
             color: white;
             margin: 0;
-            padding-top: 120px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         h1 {
-            font-size: 60px;
-            letter-spacing: 2px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 95px;
+            margin: 0;
+            letter-spacing: 3px;
+            text-shadow: 0 5px 20px rgba(0,0,0,0.25);
+            opacity: 0;
+            animation: fadeIn 2.5s forwards;
         }
 
         p {
             font-size: 22px;
-            width: 60%;
-            margin: auto;
-            margin-top: 20px;
-            line-height: 1.6;
+            width: 65%;
+            max-width: 700px;
+            margin-top: 25px;
+            line-height: 1.7;
+            opacity: 0;
+            animation: fadeIn 2.5s 1.2s forwards;
         }
 
         .heart {
-            font-size: 60px;
+            font-size: 65px;
             color: #606060;
-            margin-top: 30px;
+            margin-top: 35px;
+            animation: latido 1.6s infinite;
             opacity: 0;
-            animation: fadeIn 3s 2.5s forwards;
+            animation: fadeIn 2.5s 2s forwards, latido 1.6s infinite 2.5s;
         }
-        
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
         button {
-            margin-top: 40px;
-            padding: 15px 40px;
-            font-size: 20px;
+            margin-top: 50px;
+            padding: 16px 45px;
+            font-size: 18px;
             background-color: white;
-            color: #046307;
+            color: #18b867;
             border: none;
-            border-radius: 30px;
+            border-radius: 40px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.4s;
+            opacity: 0;
+            animation: fadeIn 2.5s 2.8s forwards;
         }
 
         button:hover {
-            background-color: #e6e6e6;
+            background-color: #f0f0f0;
             transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 
 <body>
 
-    <h1>ASTRAENESS!!!</h1>
+    <h1>Astraeness</h1>
 
     <p>
         Aunque hoy no podamos abrazarnos ni compartir este día frente a frente…  
-        Puedo crear algo único solo para ti, para que me sientas cerquita. ❤️🌹
+        puedo crear algo único solo para ti, para que me sientas cerquita.
     </p>
 
     <div class="heart">♥</div>
