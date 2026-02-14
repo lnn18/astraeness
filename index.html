@@ -3,17 +3,18 @@
 <head>
     <title>Para Astraeness 💚</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Fuente más ornamental -->
-    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
 
     <style>
         body {
-            background: linear-gradient(-45deg, #18b867, #22E07F, #5ef5a5);
-            background-size: 400% 400%;
-            animation: gradientMove 12s ease infinite;
+            background: #09C882;
             text-align: center;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Quicksand', sans-serif;
             color: white;
             margin: 0;
             height: 100vh;
@@ -21,6 +22,28 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
         }
 
         @keyframes gradientMove {
@@ -30,25 +53,27 @@
         }
 
         h1 {
-            font-family: 'Allura', cursive;
+            font-family: 'Great Vibes', cursive;
             font-size: 120px;
+            font-display: swap;
             margin: 0;
-
-            background: linear-gradient(
-                45deg,
-                #f3e6c9,
-                #e6c878,
-                #f3e6c9
-            );
-
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-
+            color: #ffffff;
             text-shadow:
-                0 0 6px rgba(255, 223, 120, 0.6),
-                0 0 12px rgba(255, 223, 120, 0.3);
-
+                0 0 10px rgba(255, 255, 255, 0.8),
+                0 0 20px rgba(255, 255, 255, 0.6),
+                0 0 30px rgba(255, 255, 255, 0.4),
+                2px 2px 4px rgba(0, 0, 0, 0.6),
+                -1px -1px 2px rgba(0, 0, 0, 0.4),
+                0 0 10px rgba(0, 0, 0, 0.5);
             letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+        }
+
+        h1.loaded {
+            opacity: 1;
+            transition: opacity 0.3s;
         }
 
 
@@ -56,19 +81,28 @@
             font-size: 22px;
             width: 65%;
             max-width: 700px;
-            margin-top: 30px;
+            margin-top: 20px;
             line-height: 1.7;
             opacity: 0;
             animation: fadeIn 2.5s 1.2s forwards;
+            position: relative;
+            z-index: 1;
+            font-weight: 500;
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.6),
+                -1px -1px 2px rgba(0, 0, 0, 0.4),
+                0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         .heart {
-            font-size: 65px;
+            font-size: 100px;
             color: #606060;
-            margin-top: 35px;
+            margin-top: 10px;
             animation: latido 1.6s infinite;
             opacity: 0;
             animation: fadeIn 2.5s 2s forwards, latido 1.6s infinite 2.5s;
+            position: relative;
+            z-index: 1;
         }
 
         @keyframes latido {
@@ -78,17 +112,19 @@
         }
 
         button {
-            margin-top: 50px;
+            margin-top: 25px;
             padding: 16px 45px;
             font-size: 18px;
             background-color: white;
-            color: #18b867;
+            color: #09C882;
             border: none;
             border-radius: 40px;
             cursor: pointer;
             transition: 0.4s;
             opacity: 0;
             animation: fadeIn 2.5s 2.8s forwards;
+            position: relative;
+            z-index: 1;
         }
 
         button:hover {
@@ -100,12 +136,63 @@
             from { opacity: 0; transform: translateY(25px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 60px;
+            }
+            p {
+                font-size: 18px;
+                width: 85%;
+            }
+            .heart {
+                font-size: 70px;
+            }
+            button {
+                padding: 14px 35px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 45px;
+            }
+            p {
+                font-size: 16px;
+                width: 90%;
+            }
+            .heart {
+                font-size: 60px;
+            }
+            button {
+                padding: 12px 30px;
+                font-size: 15px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <h1>Astraeness</h1>
+    <script>
+        document.fonts.ready.then(() => {
+            document.querySelector('h1').classList.add('loaded');
+        });
+
+        for(let i = 0; i < 3000; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = (Math.random() * 2 + 0.5) + 'px';
+            star.style.height = star.style.width;
+            star.style.animationDelay = Math.random() * 3 + 's';
+            document.body.appendChild(star);
+        }
+    </script>
+
+    <h1>Astraeness!</h1>
 
     <p>
         Aunque hoy no podamos abrazarnos ni compartir este día frente a frente…  
@@ -115,7 +202,7 @@
     <div class="heart">♥</div>
 
     <a href="sorpresa.html">
-        <button>Descubre lo que siento</button>
+        <button>Mi sorpresa para ti</button>
     </a>
 
 </body>

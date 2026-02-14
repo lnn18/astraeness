@@ -3,48 +3,136 @@
 <head>
     <title>Para Atraeness</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         body {
-            background: linear-gradient(-45deg, #18b867, #22E07F, #5ef5a5);
+            background: linear-gradient(-45deg, #09C882, #22E07F, #5ef5a5);
             text-align: center;
             font-family: 'Segoe UI', sans-serif;
             color: white;
             margin: 0;
-            padding-top: 120px;
+            padding: 20px;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
         }
 
         h1 {
-            font-size: 50px;
+            font-size: 35px;
+            font-family: 'Pacifico', cursive;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            margin: 10px 0;
+            position: relative;
+            z-index: 1;
         }
 
         p {
-            font-size: 24px;
-            width: 60%;
-            margin: auto;
-            line-height: 1.7;
-            margin-top: 40px;
+            font-size: 18px;
+            width: 70%;
+            max-width: 600px;
+            margin: 15px auto;
+            line-height: 1.5;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 500;
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.6),
+                -1px -1px 2px rgba(0, 0, 0, 0.4),
+                0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
         }
 
-        .heart {
-            font-size: 80px;
-            color: #606060;
-            margin-bottom: 30px;
-            animation: latido 1.5s infinite;
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: brillo 3s infinite;
+            z-index: 0;
         }
 
-        @keyframes latido {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-            100% { transform: scale(1); }
+        @keyframes brillo {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        iframe {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border: none;
+        }
+
+        .carousel {
+            width: 350px;
+            height: 250px;
+            position: relative;
+            margin: 15px auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            border-radius: 15px;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .carousel img.active {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            p {
+                font-size: 16px;
+                width: 85%;
+            }
+            .carousel {
+                width: 90%;
+                max-width: 350px;
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+            p {
+                font-size: 14px;
+                width: 90%;
+            }
+            .carousel {
+                width: 95%;
+                height: 180px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <h1>Atraeness</h1>
+    <iframe src="https://www.youtube.com/embed/DShae1pT-vM?autoplay=1&loop=1&playlist=DShae1pT-vM" allow="autoplay"></iframe>
 
-    <div class="heart">♥</div>
+    <h1>Para mi corazon bonito!!</h1>
+
+    <div class="carousel" id="carousel"></div>
 
     <p>
         Desde que comenzamos a hablar, algo cambió.  
@@ -53,7 +141,38 @@
 
         Me encantaría seguir descubriendo quién eres,
         porque siento que apenas estoy conociendo lo mejor de ti.
+
+        Me alegra que seas mi san valentin, Feliz día mi corazón bonito. 
     </p>
+
+    <script>
+        for(let i = 0; i < 3000; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = (Math.random() * 2 + 0.5) + 'px';
+            star.style.height = star.style.width;
+            star.style.animationDelay = Math.random() * 3 + 's';
+            document.body.appendChild(star);
+        }
+
+        const carousel = document.getElementById('carousel');
+        for(let i = 1; i <= 27; i++) {
+            const img = document.createElement('img');
+            img.src = `images/foto${i}.jpeg`;
+            if(i === 1) img.classList.add('active');
+            carousel.appendChild(img);
+        }
+
+        let current = 0;
+        const images = carousel.querySelectorAll('img');
+        setInterval(() => {
+            images[current].classList.remove('active');
+            current = (current + 1) % 27;
+            images[current].classList.add('active');
+        }, 3000);
+    </script>
 
 </body>
 </html>
